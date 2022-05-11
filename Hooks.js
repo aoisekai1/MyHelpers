@@ -5,10 +5,20 @@
 * return can be in the form only date or date time
 * default form date is 'Y-m-d'
 */
-export default function getFormatDateTime(date=null, formatDate='Y-m-d'){
-  date = !date ?  new Date() : date;
+function getFormatDateTime(date=null, formatDate='Y-m-d'){
+  date = !date ?  new Date() : new Date(date);
   
-  let arrFormatDate = ['Y-m-d','d-m-Y','Y/m/d','d/m/Y','d-M-Y','Y-M-d', 'd/M/Y','Y/M/d','Y M d','d M Y','Y-m-d H:i:s','Y-m-d H:i','d-m-Y H:i:s','d-m-Y H:i','Y/m/d H:i:s','d-M-Y H:i:s','d-M-Y H:i','Y-M-d H:i','Y-M-d H:i:s','Y/M/d H:i:s','Y/M/d H:i','Y/m/d H:i','Y','m','d','H:i:s','H:i','H','i','s'];
+  let arrFormatDate = [
+    'Y-m-d','d-m-Y','Y/m/d','d/m/Y',
+    'd-M-Y','Y-M-d', 'd/M/Y','Y/M/d',
+    'Y M d','d M Y','Y-m-d H:i:s',
+    'Y-m-d H:i','d-m-Y H:i:s','d-m-Y H:i',
+    'Y/m/d H:i:s','d-M-Y H:i:s',
+    'd-M-Y H:i','Y-M-d H:i','Y-M-d H:i:s',
+    'Y/M/d H:i:s','Y/M/d H:i','Y/m/d H:i',
+    'Y-m','m-Y','Y','m','d','H:i:s','H:i',
+    'i:s','H','i','s'
+  ];
   let checkFormatDate = arrFormatDate.indexOf(formatDate) > -1;
  	let result = '';
   if(!checkFormatDate){
