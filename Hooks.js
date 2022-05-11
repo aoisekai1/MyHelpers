@@ -16,9 +16,9 @@ function getFormatDateTime(date=null, formatDate='Y-m-d'){
     'Y/m/d H:i:s','d-M-Y H:i:s',
     'd-M-Y H:i','Y-M-d H:i','Y-M-d H:i:s',
     'Y/M/d H:i:s','Y/M/d H:i','Y/m/d H:i',
-    'Y-m','m-Y','Y M','M Y','Y','m','d',
-    'M','H:i:s','H:i',
-    'i:s','H','i','s'
+    'Y-m','m-Y','Y/m','m/Y','Y M','M Y',
+    'Y-M','Y/M','M/Y','M-Y','Y','m',
+    'd','M','H:i:s','H:i','i:s','H','i','s'
   ];
   let checkFormatDate = arrFormatDate.indexOf(formatDate) > -1;
  	let result = '';
