@@ -1,11 +1,14 @@
 /**
 * funtion FormatDate() some @params
-* @param date | string
-* @param formaDate | string
+* @param date | String
+* @param formaDate | String
+* @param obj | Object
+* - obj.first boolean <optional>
+* - obj.last boolean <optional>
 * return can be in the form only date or date time
 * default form date is 'Y-m-d'
 */
-function FormatDate(date = null, formatDate = 'Y-m-d') {
+function FormatDate(date = null, formatDate = 'Y-m-d', obj={}) {
     let myDate = new Date();
 
     if (isObject(formatDate)) {

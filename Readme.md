@@ -1,11 +1,19 @@
 Documention Hooks.js
 
-## FormatDateTime()
+## FormatDate()
   Example: </br></br>
   Input: </br>
-  FormatDateTime(new Date(),'Y-m-d H:i:s') </br></br>
+  FormatDate(new Date(),'Y-m-d H:i:s') </br></br>
+  FormatDate('first') </br></br>
+  FormatDate('last') </br></br>
+  FormatDate('2020-11-14', {first: true}) </br></br>
+  FormatDate('2020-11-14', 'Y/m/d',{first: true}) </br></br>
   Output:
   > 2020-10-02 19:29:40
+  > 2020-10-01
+  > 2020-10-31
+  > 2020-11-01
+  > 2020/11/01
 
   Supported format</br>
   - Y-m-d
@@ -47,10 +55,11 @@ Parameter </br>
   Example : </br></br>
   Input: </br>
   FormatCurrency(100000)</br>
-  FormatCurrency(100000, 'USD')</br>
-  FormatCurrency(100000, 'USD', true)</br>
-  FormatCurrency(100000, 'USD', true, true)</br>
-  FormatCurrency(100000, 'USD', true, true, true)</br></br>
+  FormatCurrency(100000, {currencyType: 'USD'})</br>
+  FormatCurrency(100000, {currencyType: 'USD', showCurrencyType: true})</br>
+  FormatCurrency(100000, {currencyType: 'USD', showSymbolCurrency: true})</br>
+  FormatCurrency(100000, {currencyType: 'USD', showDec: true})</br></br>
+  FormatCurrency(100000, {currencyType: 'USD', symbolSparator: '.'})</br></br>
 
   Output:
   > 10.000 <br>
@@ -58,6 +67,7 @@ Parameter </br>
   > USD 100,000 <br>
   > $ 100,000 <br>
   > 100,000.00 <br>
+  > 10.000 <br>
 
 Supported symbol currency type
 - USD
@@ -70,10 +80,12 @@ Supported symbol currency type
 
 Parameter </br>
 - numberCurrency type Number
-- currencyType type String
-- showCurrencyType type Boolean
-- showSymbolCurrency type Boolean
-- showDec  type Boolean
+- obj type Object
+   -currencyType type String <optional>
+   - showCurrencyType type Boolean <optional>
+   - showSymbolCurrency type Boolean <optional>
+   - showDec  type Boolean <optional>
+   - symbolSparator <optional>
 
 ## isArray()
 Example: </br></br>
