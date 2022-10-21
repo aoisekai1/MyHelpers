@@ -81,11 +81,11 @@ Supported symbol currency type
 Parameter </br>
 - numberCurrency type Number
 - obj type Object
-   -currencyType type String <optional>
-   - showCurrencyType type Boolean <optional>
-   - showSymbolCurrency type Boolean <optional>
-   - showDec  type Boolean <optional>
-   - symbolSparator <optional>
+   - currencyType type String [optional]
+   - showCurrencyType type Boolean [optional]
+   - showSymbolCurrency type Boolean [optional]
+   - showDec  type Boolean [optional]
+   - symbolSparator [optional]
 
 ## isArray()
 Example: </br></br>
