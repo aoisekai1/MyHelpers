@@ -9,11 +9,11 @@ Documention Hooks.js
   FormatDate('2020-11-14', {first: true}) </br></br>
   FormatDate('2020-11-14', 'Y/m/d',{first: true}) </br></br>
   Output:
-  > 2020-10-02 19:29:40
-  > 2020-10-01
-  > 2020-10-31
-  > 2020-11-01
-  > 2020/11/01
+  > 2020-10-02 19:29:40 <br>
+  > 2020-10-01 <br>
+  > 2020-10-31 <br>
+  > 2020-11-01 <br>
+  > 2020/11/01 <br>
 
   Supported format</br>
   - Y-m-d
