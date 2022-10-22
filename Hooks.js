@@ -5,6 +5,7 @@
 * @param obj | Object
 * - obj.first boolean <optional>
 * - obj.last boolean <optional>
+* - obj.nextWeek boolean <optional>
 * return can be in the form only date or date time
 * default form date is 'Y-m-d'
 */
@@ -28,6 +29,9 @@ function FormatDate(date = null, formatDate = 'Y-m-d', obj={}) {
     if (obj.last === true) {
         date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     }
+    if (obj.nextWeek){
+        date = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000);
+    }
 
     let arrFormatDate = [
         'Y-m-d', 'd-m-Y', 'Y/m/d', 'd/m/Y',
@@ -39,7 +43,8 @@ function FormatDate(date = null, formatDate = 'Y-m-d', obj={}) {
         'Y/M/d H:i:s', 'Y/M/d H:i', 'Y/m/d H:i',
         'Y-m', 'm-Y', 'Y/m', 'm/Y', 'Y M', 'M Y',
         'Y-M', 'Y/M', 'M/Y', 'M-Y', 'Y', 'm',
-        'd', 'M', 'H:i:s', 'H:i', 'i:s', 'H', 'i', 's'
+        'd', 'M', 'H:i:s', 'H:i', 'i:s', 'H', 'i', 's',
+        'w'
     ];
     let checkFormatDate = arrFormatDate.indexOf(formatDate) > -1;
     let result = '';
@@ -112,6 +117,8 @@ function _checkFormatDate(formatDate, date) {
             dateTime = getMinute;
         } else if (stringDate == 's') {
             dateTime = getSecond;
+        } else if (stringDate == 'w') {
+            dateTime = _getWeekNum(date);
         }
 
         //Replace format date
@@ -119,6 +126,19 @@ function _checkFormatDate(formatDate, date) {
     }
 
     return newFormatDate;
+}
+
+function _getWeekNum(date){
+    // Copy date so don't modify original
+    date = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    // Set to nearest Thursday: current date + 4 - current day number
+    // Make Sunday's day number 7
+    date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay()||7));
+    // Get first day of year
+    let yearStart = new Date(Date.UTC(date.getUTCFullYear(),0,1));
+    // Calculate full weeks to nearest Thursday
+    let weekNum = Math.ceil(( ( (date - yearStart) / 86400000) + 1)/7);
+    return weekNum
 }
 /**End Get Format Date*/
 

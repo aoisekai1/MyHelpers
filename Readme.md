@@ -6,14 +6,16 @@ Documention Hooks.js
   FormatDate(new Date(),'Y-m-d H:i:s') </br></br>
   FormatDate('first') </br></br>
   FormatDate('last') </br></br>
-  FormatDate('2020-11-14', {first: true}) </br></br>
-  FormatDate('2020-11-14', 'Y/m/d',{first: true}) </br></br>
+  FormatDate('2020-11-14', {first: true}) //Get first date now</br></br>
+  FormatDate('2020-11-14', 'Y/m/d',{first: true}) //Get first date </br></br>
+  FormatDate('2020-11-14', 'w') //Get week number</br></br>
   Output:
   > 2020-10-02 19:29:40 <br>
   > 2020-10-01 <br>
   > 2020-10-31 <br>
   > 2020-11-01 <br>
   > 2020/11/01 <br>
+  > 46 <br>
 
   Supported format</br>
   - Y-m-d
