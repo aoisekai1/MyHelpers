@@ -9,6 +9,8 @@ Documention Hooks.js
   FormatDate('2020-11-14', {first: true}) //Get first date now</br></br>
   FormatDate('2020-11-14', 'Y/m/d',{first: true}) //Get first date </br></br>
   FormatDate('2020-11-14', 'w') //Get week number</br></br>
+  FormatDate('2020-11-14', {nextWeek: true})
+  
   Output:
   > 2020-10-02 19:29:40 <br>
   > 2020-10-01 <br>
@@ -16,6 +18,7 @@ Documention Hooks.js
   > 2020-11-01 <br>
   > 2020/11/01 <br>
   > 46 <br>
+  > 2020-11-21 <br>
 
   Supported format</br>
   - Y-m-d
