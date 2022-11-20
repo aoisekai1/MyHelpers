@@ -9,7 +9,7 @@
 * return can be in the form only date or date time
 * default form date is 'Y-m-d'
 */
-function FormatDate(date = null, formatDate = 'Y-m-d', obj={}) {
+function FormatDate(date = null, formatDate = 'Y-m-d', obj = {}) {
     let myDate = new Date();
 
     if (isObject(formatDate)) {
@@ -29,7 +29,7 @@ function FormatDate(date = null, formatDate = 'Y-m-d', obj={}) {
     if (obj.last === true) {
         date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     }
-    if (obj.nextWeek){
+    if (obj.nextWeek) {
         date = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000);
     }
 
@@ -128,20 +128,64 @@ function _checkFormatDate(formatDate, date) {
     return newFormatDate;
 }
 
-function _getWeekNum(date){
+function _getWeekNum(date) {
     // Copy date so don't modify original
     date = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
     // Set to nearest Thursday: current date + 4 - current day number
     // Make Sunday's day number 7
-    date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay()||7));
+    date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay() || 7));
     // Get first day of year
-    let yearStart = new Date(Date.UTC(date.getUTCFullYear(),0,1));
+    let yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
     // Calculate full weeks to nearest Thursday
-    let weekNum = Math.ceil(( ( (date - yearStart) / 86400000) + 1)/7);
+    let weekNum = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
     return weekNum
 }
 /**End Get Format Date*/
 
+/** 
+ * Function TimeSice()
+ * @param dateTime <String> => Y-m-d H:i:s (2022-11-20 15:50:10)
+ * @return <String>
+ * 
+ * Output: 
+ * 10 minutes ago
+*/
+function TimeSince(dateTime = "") {
+    var thisDateTime = FormatDate(new Date(), "Y-m-d H:i:s");
+    if (dateTime > thisDateTime) {
+        console.warn("Ops. datetime param more than big from datetime now");
+        return "";
+    }
+    dateTime = new Date(dateTime);
+    thisDateTime = new Date(thisDateTime);
+    var msPerMinute = 60 * 1000;
+    var msPerHour = msPerMinute * 60;
+    var msPerDay = msPerHour * 24;
+    var msPerMonth = msPerDay * 30;
+    var msPerYear = msPerDay * 365;
+
+    var elapsed = thisDateTime - dateTime;
+    if (elapsed < msPerMinute) {
+        return Math.round(elapsed / 1000) + ' seconds ago';
+    }
+    if (elapsed < msPerHour) {
+        return Math.round(elapsed / msPerMinute) + ' minutes ago';
+    }
+    if (elapsed < msPerDay) {
+        return Math.round(elapsed / msPerHour) + ' hours ago';
+    }
+    if (elapsed < msPerMonth) {
+        return Math.round(elapsed / msPerDay) + ' days ago';
+    }
+    if (elapsed < msPerYear) {
+        return Math.round(elapsed / msPerMonth) + ' months ago';
+    }
+    if (elapsed >= msPerYear) {
+        return Math.round(elapsed / msPerYear) + ' years ago';
+    }
+
+    return "";
+}
 /**
  *  function FormatCurrency()
  *  @param numberCurrency  string | number
