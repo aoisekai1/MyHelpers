@@ -201,8 +201,7 @@ function FormatCurrency(numberCurrency = 0, obj = {}) {
     currencyType = !obj.currencyType ? 'IDR' : obj.currencyType;
     //Check null value numberCurrency
     if (!numberCurrency) {
-        console.log("Ops, value cannot be null");
-        return;
+        return 0;
     }
     //convert integer to  string
     numberCurrency = numberCurrency.toString();
@@ -262,6 +261,34 @@ function FormatCurrency(numberCurrency = 0, obj = {}) {
     return currency;
 }
 /**END Format Currency*/
+
+/**
+ * Start Input Number
+ * @param number <Number/String>
+ * @param obj <Object>
+ * obj.schar <optional> //Default dot(.)
+ * obj.type <optional> //Default number
+ * 
+ * return <Number>
+ * */
+function inumber(number, obj={}){
+   let val = 0;
+   obj.schar = obj.schar ? obj.schar: ".";
+   obj.type = obj.type ? obj.type:"number"; 
+   if(!number) return "";
+   if(obj.type == "currency"){
+       val = FormatCurrency(number).replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, obj.schar);
+   }
+   if(obj.type == "decimal"){
+       val = number.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');
+   }
+   if(obj.type == "number"){
+       val = number.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');
+   }
+   
+   return val;
+}
+/** END Input Number*/
 
 /** START Check Type Data */
 /**
