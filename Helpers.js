@@ -111,7 +111,7 @@ async function sendFormData(form = "", url = "", method = "POST", others = {}) {
             return response;
         } else {
             notify({ statusType: ERROR, text: 'System cannot proceed your request, please try again later' })
-            SETTIMEOUT('refresh');
+            return;
         }
     } catch (error) {
         console.log('Error 🚩 ', error.message);
@@ -169,8 +169,11 @@ async function request(url, others = {}) {
         return;
     }
 
-    if (others.data == "" && others.method == $POST.toLowerCase()
-        || others.method == $PUT.toLowerCase()) {
+    if (others.data == "" && others.method == $POST.toLowerCase()) {
+        notify({ statusType: WARNING, text: 'Data is not set' });
+        return;
+    }
+    if (others.data == "" && others.method == $PUT.toLowerCase()) {
         notify({ statusType: WARNING, text: 'Data is not set' });
         return;
     }
