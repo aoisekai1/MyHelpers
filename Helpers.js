@@ -471,13 +471,14 @@ function rebuild(data = [], num = 1) {
     let fname = getKeys(lastRow)[0];
     let prevData = '';
     for (let index in data) {
+        let currFName = data[index][fname];
         if (data[index][fname] == prevData) {
             for (let i in fields) {
                 let f = fields[i];
                 data[index][f] = i <= num ? '' : data[index][f];
             }
         }
-        prevData = data[index][fname];
+        prevData = currFName;
     }
     return data;
 }
