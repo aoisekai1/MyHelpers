@@ -1,6 +1,7 @@
 const $GET = 'GET';
 const $POST = 'POST';
 const $PUT = 'PUT';
+const $PATCH = 'PATCH';
 const $DELETE = 'DELETE';
 const WARNING = 2;
 const ERROR = 1;
@@ -174,6 +175,10 @@ async function request(url, others = {}) {
         return;
     }
     if (others.data == "" && others.method == $PUT.toLowerCase()) {
+        notify({ statusType: WARNING, text: 'Data is not set' });
+        return;
+    }
+    if (others.data == "" && others.method == $PATCH.toLowerCase()) {
         notify({ statusType: WARNING, text: 'Data is not set' });
         return;
     }
